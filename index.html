@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجرك الإلكتروني الاحترافي</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="app-frame-container">
+
+        <!-- قسم تسجيل الدخول -->
+        <section id="login-section" class="view-section">
+            <div class="login-card glass-card">
+                <div class="avatar-container">
+                    <img src="1000273806.jpg" alt="شعار المتجر" onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=200'">
+                </div>
+                <h2>تسجيل الدخول</h2>
+                <p class="login-instruction">أدخل اسم المستخدم وكلمة المرور للمتابعة</p>
+                
+                <div id="login-error" class="error-box-real hidden">اسم المستخدم أو كلمة المرور غير صحيحة!</div>
+
+                <input type="text" id="login-user" placeholder="اسم المستخدم" onfocus="clearLoginError()">
+                <input type="password" id="login-pass" placeholder="كلمة المرور" onfocus="clearLoginError()">
+
+                <button class="btn-primary" onclick="login()">دخول</button>
+                <button class="btn-primary" onclick="enterAsVisitor()" style="background: linear-gradient(135deg, #ec4899, #9333ea); margin-top: 8px;">دخول كزائر كريم</button>
+
+                <div class="forgot-password-container" style="margin-top: 12px;">
+                    <a href="#" class="forgot-link" onclick="forgotPassword()" style="color: var(--primary-color); font-size: 13px; text-decoration: none;">نسيت كلمة المرور؟</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم التطبيق الأساسي -->
+        <section id="app-section" class="view-section hidden">
+            
+            <div class="top-bar">
+                <div class="top-bar-left-group">
+                    <button class="menu-toggle-btn" id="smart-topbar-btn" onclick="handleMenuOrExit()" title="القائمة / تسجيل الخروج">
+                        <span id="menu-btn-icon">☰</span>
+                    </button>
+                    <!-- زر الوضع الفاتح/الداكن بجانب زر القائمة -->
+                    <button class="menu-toggle-btn theme-toggle-topbar" onclick="toggleTheme()" title="تبديل الوضع الفاتح / الداكن">
+                        <span id="theme-btn-icon">🌙</span>
+                    </button>
+                </div>
+                
+                <div class="top-bar-center-search">
+                    <div class="topbar-search-container">
+                        <input type="text" id="topbar-search" class="floating-search-input" placeholder="بحث سريع..." oninput="handleFloatingSearchInput(this)">
+                        <span class="floating-search-icon" id="floating-search-icon">🔍</span>
+                    </div>
+                </div>
+
+                <div class="top-bar-right-user">
+                    <div class="user-pill">
+                        <div class="user-status-dot"></div>
+                        <span id="user-display-name">زائر</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-content">
+
+                <div id="view-store" class="view-section">
+                    
+                    <div class="carousel-container-pro">
+                        <div class="carousel-slides-wrapper" id="carousel-slides-wrapper">
+                            <div class="carousel-slide active">
+                                <img src="1000273806.jpg" alt="صورة 1" class="carousel-img" onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800'">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="1000110327.jpg" alt="صورة 2" class="carousel-img" onerror="this.src='https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=800'">
+                            </div>
+                        </div>
+                        <div class="carousel-dots" id="carousel-dots">
+                            <span class="dot active" onclick="currentSlide(0)"></span>
+                            <span class="dot" onclick="currentSlide(1)"></span>
+                        </div>
+                    </div>
+
+                    <div id="admin-stats-wrapper" class="hidden">
+                        <div class="stats-container-pro">
+                            <div class="stat-card-pro">
+                                <div class="stat-icon-bg">👁️</div>
+                                <div class="stat-data">
+                                    <span class="stat-label">الزوار</span>
+                                    <span class="stat-value">1,240</span>
+                                </div>
+                            </div>
+                            <div class="stat-card-pro" id="customers-card">
+                                <div class="stat-icon-bg">👥</div>
+                                <div class="stat-data">
+                                    <span class="stat-label">الزبائن</span>
+                                    <span class="stat-value">0</span>
+                                </div>
+                            </div>
+                            <div class="stat-card-pro">
+                                <div class="stat-icon-bg">💰</div>
+                                <div class="stat-data">
+                                    <span class="stat-label">الأرباح</span>
+                                    <span class="stat-value">450 ألف</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="categories-section">
+                        <div class="categories-grid-squares">
+                            <div class="category-square-card" id="cat-accessories" onclick="openCategoryProducts('الإكسسوارات')">
+                                <div class="cat-circle-img-wrapper"><img src="1000273806.jpg" alt="A"></div>
+                                <h4>الإكسسوارات</h4><p>أحدث التشكيلات المميزة</p>
+                            </div>
+                            <div class="category-square-card" id="cat-offers" onclick="openCategoryProducts('العروض والتنزيلات')">
+                                <div class="cat-circle-img-wrapper"><img src="1000273806.jpg" alt="A"></div>
+                                <h4>العروض والتنزيلات</h4><p>حسومات مذهلة يومياً</p>
+                            </div>
+                            <div class="category-square-card" id="cat-custom-orders" onclick="openCategoryProducts('توصيات على الطلب')">
+                                <div class="cat-circle-img-wrapper"><img src="1000273806.jpg" alt="A"></div>
+                                <h4>توصيات على الطلب</h4><p>اطلب ما يناسب ذوقك</p>
+                            </div>
+                            <div class="category-square-card" id="cat-games" onclick="openCategoryProducts('الألعاب')">
+                                <div class="cat-circle-img-wrapper"><img src="1000273806.jpg" alt="A"></div>
+                                <h4>الألعاب</h4><p>ألعاب ومتسلزمات ترفيهية</p>
+                            </div>
+                            <div class="category-square-card" id="cat-gifts" onclick="openCategoryProducts('الهدايا')">
+                                <div class="cat-circle-img-wrapper"><img src="1000273806.jpg" alt="A"></div>
+                                <h4>الهدايا</h4><p>هدايا راقية لكل المناسبات</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- النموذج المنبثق لمنتجات الأقسام -->
+                    <div id="store-category-products-view" class="modal-container-internal hidden">
+                        <div class="modal-content-card category-modal-card">
+                            <h3 id="current-category-title" class="category-modal-header"></h3>
+                            <div id="store-products-list"></div>
+                            <div class="modal-footer-action">
+                                <button class="btn-primary btn-return-categories" onclick="backToCategories()">⬅ العودة للأقسام</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="view-search" class="view-section hidden">
+                    <div class="glass-card">
+                        <h3>بحث متقدم</h3>
+                        <select id="search-type" onchange="performSearch()">
+                            <option value="product">بحث في المنتجات</option>
+                            <option value="customer">بحث في الزبائن</option>
+                        </select>
+                        <input type="text" id="search-input" placeholder="اكتب للبحث..." oninput="performSearch()">
+                        <div id="search-results" class="results-box"></div>
+                    </div>
+                </div>
+
+                <div id="view-add-product" class="view-section hidden">
+                    <div class="glass-card">
+                        <h3>إضافة منتج جديد</h3>
+                        <input type="text" id="new-prod-name" placeholder="اسم المنتج">
+                        <select id="new-prod-cat">
+                            <option value="الإكسسوارات">الإكسسوارات</option>
+                            <option value="العروض والتنزيلات">العروض والتنزيلات</option>
+                            <option value="توصيات على الطلب">توصيات على الطلب</option>
+                            <option value="الألعاب">الألعاب</option>
+                            <option value="الهدايا">الهدايا</option>
+                        </select>
+                        <input type="number" id="new-prod-buy-price" placeholder="سعر الشراء">
+                        <input type="number" id="new-prod-sell-price" placeholder="سعر المبيع">
+                        <input type="number" id="new-prod-qty" placeholder="الكمية المتوفرة">
+                        <button class="btn-primary" onclick="addNewProduct()">حفظ وإضافة المنتج</button>
+                    </div>
+                </div>
+
+                <div id="view-add-employee" class="view-section hidden">
+                    <div class="glass-card">
+                        <h3>إضافة موظف جديد</h3>
+                        <input type="text" id="new-username" placeholder="اسم المستخدم للموظف">
+                        <input type="password" id="new-password" placeholder="كلمة المرور">
+                        
+                        <p class="hint" style="font-weight:700; margin-top:15px; margin-bottom:5px;">صلاحيات الموظف:</p>
+                        <div class="permissions-grid">
+                            <label class="switch-label"><span>إضافة منتج جديد</span> <input type="checkbox" id="perm-add-product"></label>
+                            <label class="switch-label"><span>تعديل بيانات منتج</span> <input type="checkbox" id="perm-edit-product"></label>
+                            <label class="switch-label"><span>حذف منتج</span> <input type="checkbox" id="perm-delete-product"></label>
+                            <label class="switch-label"><span>حظر زبون</span> <input type="checkbox" id="perm-ban-customer"></label>
+                            <label class="switch-label"><span>إخفاء الإكسسوارات</span> <input type="checkbox" id="perm-hide-accessories"></label>
+                            <label class="switch-label"><span>إخفاء العروض والتنزيلات</span> <input type="checkbox" id="perm-hide-offers"></label>
+                            <label class="switch-label"><span>إخفاء توصيات على الطلب</span> <input type="checkbox" id="perm-hide-custom"></label>
+                            <label class="switch-label"><span>إخفاء قسم الألعاب</span> <input type="checkbox" id="perm-hide-games"></label>
+                            <label class="switch-label"><span>إخفاء قسم الهدايا</span> <input type="checkbox" id="perm-hide-gifts"></label>
+                            <label class="switch-label"><span>إخفاء التقرير المالي</span> <input type="checkbox" id="perm-hide-financial"></label>
+                            <label class="switch-label"><span>إخفاء عدد الزوار</span> <input type="checkbox" id="perm-hide-visitors"></label>
+                            <label class="switch-label"><span>إخفاء عدد الزبائن</span> <input type="checkbox" id="perm-hide-customers"></label>
+                        </div>
+                        <button class="btn-primary" onclick="createEmployee()">إنشاء حساب الموظف</button>
+                    </div>
+                </div>
+
+                <div id="view-employees" class="view-section hidden">
+                    <div class="glass-card">
+                        <h3>إدارة الموظفين والصلاحيات</h3>
+                        <div id="employees-list"></div>
+                    </div>
+                </div>
+
+                <div id="view-customers" class="view-section hidden">
+                    <div class="glass-card">
+                        <h3>إدارة الزبائن</h3>
+                        <div id="customers-list"></div>
+                    </div>
+                </div>
+
+                <div id="view-blacklist" class="view-section hidden">
+                    <div class="glass-card">
+                        <h3>قائمة الزبائن المحظورين</h3>
+                        <div id="blacklist-container"></div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- نافذة إكمال طلب الشراء -->
+        <div id="customer-register-modal" class="modal-container-internal hidden">
+            <div class="modal-content-card">
+                <h3>إكمال طلب الشراء</h3>
+                <p class="login-instruction" style="margin-bottom: 16px; font-size:12px; color:var(--text-muted);">يرجى إدخال بياناتك الشخصية لتثبيت الطلب ومتابعة التوصيل</p>
+                
+                <!-- حقل الاسم الثلاثي -->
+                <input type="text" id="reg-fullname" placeholder="الاسم الثلاثي">
+
+                <!-- حقل رقم الهاتف -->
+                <input type="text" id="reg-phone" placeholder="رقم الهاتف/الواتساب (يبدأ بـ 09)">
+                
+                <!-- حقل الإثبات الشخصي قائمة منسدلة -->
+                <select id="reg-id-type" style="margin-bottom: 14px;">
+                    <option value="" disabled selected>اختر نوع الإثبات الشخصي</option>
+                    <option value="هوية شخصية">هوية شخصية</option>
+                    <option value="جواز سفر">جواز سفر</option>
+                </select>
+
+                <!-- حقل المحافظة قائمة منسدلة تحتوي المحافظات وفي نهايتها أخرى -->
+                <select id="reg-governorate" onchange="checkGovernorateSelection()" style="margin-bottom: 14px;">
+                    <option value="" disabled selected>اختر المحافظة</option>
+                    <option value="دمشق">دمشق</option>
+                    <option value="ريف دمشق">ريف دمشق</option>
+                    <option value="حلب">حلب</option>
+                    <option value="حمص">حمص</option>
+                    <option value="حماة">حماة</option>
+                    <option value="اللاذقية">اللاذقية</option>
+                    <option value="طرطوس">طرطوس</option>
+                    <option value="درعا">درعا</option>
+                    <option value="السويداء">السويداء</option>
+                    <option value="القنيطرة">القنيطرة</option>
+                    <option value="دير الزور">دير الزور</option>
+                    <option value="الرقة">الرقة</option>
+                    <option value="الحسكة">الحسكة</option>
+                    <option value="إدلب">إدلب</option>
+                    <option value="أخرى">أخرى</option>
+                </select>
+
+                <!-- حقل اسم الدولة يظهر فقط عند اختيار "أخرى" (تم إضافة hidden هنا لإخفائه افتراضياً) -->
+                <div id="country-container" class="hidden">
+                    <input type="text" id="reg-country" placeholder="اسم الدولة المقيم فيها">
+                </div>
+
+                <!-- حقل العنوان التفصيلي -->
+                <input type="text" id="reg-address-details" placeholder="شرح توضيحي للعنوان (المنطقة، النقطة الدالة)">
+
+                <div class="checkout-buttons-group">
+                    <button class="btn-primary" onclick="submitCustomerRegistration()">تثبيت الطلب</button>
+                    <button class="btn-primary btn-danger" onclick="closeCustomerRegisterModal()">إلغاء</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- القائمة الجانبية -->
+        <div id="side-menu" class="side-menu hidden">
+            <div class="menu-header">
+                <span class="menu-title-pill">لوحة التحكم</span>
+                <button class="menu-close-btn" onclick="toggleMenu()">✕</button>
+            </div>
+            <ul class="menu-items">
+                <li onclick="navigateTo('store')">🏠 الرئيسية / المتجر</li>
+                <li onclick="navigateTo('search')">🔍 البحث المتقدم</li>
+                <div class="admin-only-item">
+                    <div class="menu-section-title">إدارة المخزون</div>
+                    <li onclick="navigateTo('add-product')">➕ إضافة منتج جديد</li>
+                </div>
+                <div id="menu-employees-group">
+                    <div class="menu-section-title">إدارة الموظفين</div>
+                    <li onclick="navigateTo('add-employee')">👤 إضافة موظف جديد</li>
+                    <li onclick="navigateTo('employees')">👥 قائمة الموظفين والصلاحيات</li>
+                </div>
+                <div id="menu-customers-group">
+                    <div class="menu-section-title">إدارة الزبائن</div>
+                    <li onclick="navigateTo('customers')">📋 قائمة الزبائن المسجلين</li>
+                    <li onclick="navigateTo('blacklist')">🚫 القائمة السوداء (المحظورين)</li>
+                </div>
+            </ul>
+            <hr class="menu-section-divider">
+            <div class="menu-footer">
+                <button class="btn-primary logout-btn btn-danger" onclick="logout()">🚪 تسجيل الخروج</button>
+            </div>
+        </div>
+        <div id="menu-overlay" class="menu-overlay hidden" onclick="toggleMenu()"></div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
